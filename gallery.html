@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        /* تنظیمات کلی */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Beautiful Image Gallery</h1>
+    <div class="gallery">
+        <img src="C:\Users\dell\Pictures\New folder (4)\1651767525161.jpg" alt="Image 1">
+        <img src="C:\Users\dell\Pictures\New folder (4)\1651767549154.jpg" alt="Image 2">
+        <img src="C:\Users\dell\Pictures\New folder (4)\1651767537952.jpg" alt="Image 3">
+        <img src="C:\Users\dell\Pictures\New folder (4)\1651767544297.jpg" alt="Image 4">
+        <img src="C:\Users\dell\Pictures\New folder (4)\1643393365225.jpg" alt="Image 5">
+        <img src="C:\Users\dell\Pictures\New folder (4)\1643393354523.jpg" alt="Image 6">
+    </div>
+</body>
+</html>
