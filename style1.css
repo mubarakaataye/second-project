@@ -9,4 +9,12 @@ body{
     align-items: center;
     height: 100vh;
 }
+.invition-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+  
+
 
