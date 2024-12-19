@@ -15,6 +15,85 @@ body{
     align-items: center;
     height: 100%;
 }
+.invitation-card {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* عنوان */
+.invitation-card h1 {
+    font-size: 1.8em;
+    color: #ff6699;
+}
+
+/* متن اصلی */
+.invitation-card p {
+    font-size: 1.1em;
+    margin: 10px 0;
+    color: #555;
+}
+
+/* بالون‌ها */
+.decorations {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.balloon {
+    width: 30px;
+    height: 40px;
+    background: radial-gradient(circle, #ff6699, #ff3366);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    animation: float 3s infinite ease-in-out;
+}
+
+/* بند بالون */
+.balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 2px;
+    height: 15px;
+    background: #ff3366;
+    transform: translateX(-50%);
+}
+
+/* پانوشت */
+.footer {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* انیمیشن‌ها */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
   
 
 
