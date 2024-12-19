@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #333;
+        }
+
+        .card {
+            width: 350px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h1 {
+            font-size: 2.5rem;
+            color: #ff6f61;
+            margin-bottom: 10px;
+        }
+
+        .card img {
+            width: 150px;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 10px;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 20px 0;
+        }
+
+        .card button {
+            padding: 10px 20px;
+            border: none;
+            background: #ff6f61;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .card button:hover {
+            background: #ff8568;
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .confetti span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: fall 3s infinite ease-in-out;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti">
+        <span style="left: 10%; animation-delay: 0s;"></span>
+        <span style="left: 30%; animation-delay: 0.5s;"></span>
+        <span style="left: 50%; animation-delay: 1s;"></span>
+        <span style="left: 70%; animation-delay: 1.5s;"></span>
+        <span style="left: 90%; animation-delay: 2s;"></span>
+    </div>
+    <div class="card">
+        <h1>Happy Birthday!</h1>
+        <img src="C:\Users\dell\Pictures\New folder (4)\1651767549154.jpg" alt="Birthday Cake">
+        <p>Wishing you all the happiness in the world. Have a wonderful day!</p>
+        <button>Celebrate Now!</button>
+    </div>
+</body>
+</html>
