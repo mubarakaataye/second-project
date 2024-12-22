@@ -55,3 +55,6 @@ button.clear{
 button.clear:hover{
     background: #ff4757;
 }
+button:active{
+    transform: scale(0.95);
+}
