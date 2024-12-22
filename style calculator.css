@@ -46,3 +46,9 @@ button{
 button:hover{
     background: #f0f0f0;
 }
+button.clear{
+    grid-column: span 4;
+    background: #ff6b6b;
+    color: white;
+    font-size: 1.1rem;
+}
