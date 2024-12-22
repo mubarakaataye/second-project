@@ -33,3 +33,9 @@ body{
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
+button{
+    background: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
