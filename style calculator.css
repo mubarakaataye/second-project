@@ -58,3 +58,7 @@ button.clear:hover{
 button:active{
     transform: scale(0.95);
 }
+button:nth-child(15){
+    background: #4caf59;
+    color: white;
+}
