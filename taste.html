@@ -22,11 +22,231 @@
             width: 80%;
             max-width: 600px;
             background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        h1, h2 {
+            margin: 0 0 20px;
+            animation: slideDown 1s ease-in-out;
+        }
+
+        p {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        button {
+            background: #8f94fb;
+            border: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #6a6fdf;
+        }
+
+        .options button {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .result-text {
+            font-size: 24px;
+            font-weight: bold;
+            animation: pulse 1s infinite;
+        }
+
+        /* انیمیشن‌ها */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
     </style>
 </head>
 <body>
-  
-    
+    <div class="container">
+        <!-- صفحه خوش‌آمدگویی -->
+        <div id="welcome-screen" class="screen active">
+            <h1>آزمون شخصیت‌شناسی</h1>
+            <p>به آزمون ما خوش آمدید. آیا شما درون‌گرا، میان‌گرا یا برون‌گرا هستید؟</p>
+            <button class="start-btn">شروع کنید</button>
+        </div>
+
+        <!-- سوالات -->
+        <div id="quiz-screen" class="screen">
+            <h2 id="question-text">سوال 1: کدام فعالیت برای شما جذاب‌تر است؟</h2>
+            <div class="options">
+                <button class="option-btn" data-type="introvert">مطالعه کتاب</button>
+                <button class="option-btn" data-type="extrovert">صحبت با دوستان</button>
+                <button class="option-btn" data-type="ambivert">هم‌زمان هم مطالعه و هم معاشرت</button>
+            </div>
+        </div>
+
+        <!-- نتیجه -->
+        <div id="result-screen" class="screen">
+            <h1>نتیجه شما:</h1>
+            <p class="result-text">شما <span id="result-type"></span> هستید!</p>
+            <button class="restart-btn">دوباره امتحان کنید</button>
+        </div>
+    </div>
+
+    <script>
+        // انتخاب عناصر HTML
+        const welcomeScreen = document.getElementById("welcome-screen");
+        const quizScreen = document.getElementById("quiz-screen");
+        const resultScreen = document.getElementById("result-screen");
+        const startBtn = document.querySelector(".start-btn");
+        const questionText = document.getElementById("question-text");
+        const optionButtons = document.querySelectorAll(".option-btn");
+        const resultType = document.getElementById("result-type");
+        const restartBtn = document.querySelector(".restart-btn");
+
+        // سوالات و امتیازات
+        const questions = [
+            {
+                question: "کدام فعالیت برای شما جذاب‌تر است؟",
+                options: {
+                    introvert: "مطالعه کتاب",
+                    extrovert: "صحبت با دوستان",
+                    ambivert: "هم‌زمان هم مطالعه و هم معاشرت"
+                }
+            },
+            {
+                question: "وقتی خسته‌اید، چه کاری می‌کنید؟",
+                options: {
+                    introvert: "تنهایی استراحت می‌کنم",
+                    extrovert: "با دیگران صحبت می‌کنم",
+                    ambivert: "کمی تنها و کمی با دیگران وقت می‌گذرانم"
+                }
+            },
+            {
+                question: "چطور بهترین روز خود را می‌گذرانید؟",
+                options: {
+                    introvert: "کارهای انفرادی مانند خواندن کتاب",
+                    extrovert: "مهمانی و ارتباط با دوستان",
+                    ambivert: "ترکیبی از وقت گذراندن با دیگران و تنهایی"
+                }
+            },
+            {
+                question: "چگونه با افراد جدید آشنا می‌شوید؟",
+                options: {
+                    introvert: "با احتیاط و کم‌کم",
+                    extrovert: "خیلی راحت و سریع",
+                    ambivert: "بسته به فرد و موقعیت"
+                }
+            },
+            {
+                question: "وقتی مشکلی دارید، چطور حلش می‌کنید؟",
+                options: {
+                    introvert: "تنهایی فکر می‌کنم",
+                    extrovert: "با دوستان و خانواده صحبت می‌کنم",
+                    ambivert: "ابتدا فکر می‌کنم، سپس مشورت می‌کنم"
+                }
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let scores = { introvert: 0, extrovert: 0, ambivert: 0 };
+
+        // شروع آزمون
+        startBtn.addEventListener("click", () => {
+            welcomeScreen.classList.remove("active");
+            quizScreen.classList.add("active");
+            loadQuestion();
+        });
+
+        // بارگذاری سوالات
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            questionText.textContent = سوال ${currentQuestionIndex + 1}: ${currentQuestion.question};
+            optionButtons.forEach((button) => {
+                const type = button.getAttribute("data-type");
+                button.textContent = currentQuestion.options[type];
+            });
+        }
+
+        // ثبت پاسخ و رفتن به سوال بعدی
+        optionButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const type = button.getAttribute("data-type");
+                scores[type]++;
+
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            });
+        });
+
+        // نمایش نتیجه
+        function showResult() {
+            quizScreen.classList.remove("active");
+            resultScreen.classList.add("active");
+
+            const maxScore = Math.max(...Object.values(scores));
+            const result = Object.keys(scores).find((key) => scores[key] === maxScore);
+
+            if (result === "introvert") {
+                resultType.textContent = "درون‌گرا";
+            } else if (result === "extrovert") {
+                resultType.textContent = "برون‌گرا";
+            } else {
+                resultType.textContent = "میان‌گرا";
+            }
+        }
+
+        // دوباره شروع کردن آزمون
+        restartBtn.addEventListener("click", () => {
+            currentQuestionIndex = 0;
+            scores = { introvert: 0, extrovert: 0, ambivert: 0 };
+
+            resultScreen.classList.remove("active");
+            welcomeScreen.classList.add("active");
+        });
+    </script>
 </body>
 </html>
+        
