@@ -34,4 +34,5 @@ button:active{
 }
 .options{
     display: flex;
+    flex-direction: column;
 }
