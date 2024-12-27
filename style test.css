@@ -20,3 +20,6 @@ body{
     flex-direction: column;
     align-items: center;
 }
+.screen{
+    display: none;
+}
