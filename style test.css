@@ -26,3 +26,6 @@ body{
 .screen.active{
     display: block;
 }
+button:active{
+    background: #ff4757;
+}
