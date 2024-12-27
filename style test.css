@@ -37,3 +37,6 @@ button:active{
     flex-direction: column;
     gap: 10px;
 }
+.result-text{
+    font-size: 1.2rem;
+}
